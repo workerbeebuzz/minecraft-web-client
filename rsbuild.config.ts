@@ -173,12 +173,13 @@ const appConfig = defineConfig({
         },
     },
     server: {
+        port: 9111,
         // strictPort: true,
         // publicDir: {
         //     name: 'assets',
         // },
         proxy: {
-            '/api': 'http://localhost:8080',
+            '/api': 'http://localhost:9112',
         },
     },
     plugins: [

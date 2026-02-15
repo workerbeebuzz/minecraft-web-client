@@ -21,10 +21,10 @@ let timeout = timeoutIndex > -1 && timeoutIndex + 1 < process.argv.length
     ? parseInt(process.argv[timeoutIndex + 1])
     : process.env.TIMEOUT
         ? parseInt(process.env.TIMEOUT)
-        : 10000
+        : 120000
 if (isNaN(timeout) || timeout < 0) {
-  console.warn('Invalid timeout value provided, using default of 10000ms')
-  timeout = 10000
+  console.warn('Invalid timeout value provided, using default of 120000ms')
+  timeout = 120000
 }
 app.use(compression())
 app.use(cors())
@@ -73,7 +73,7 @@ if (isProd) {
 }
 
 const numArg = process.argv.find(x => x.match(/^\d+$/))
-const port = (require.main === module ? numArg : undefined) || 8080
+const port = (require.main === module ? numArg : undefined) || process.env.PROXY_PORT || 9112
 
 // Start the server
 const server =
